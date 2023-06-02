@@ -3,8 +3,9 @@ import './Row.scss'
 import uuid from 'uuid-random'
 function Row(props){
 
+   let selected = props.color
+
     const iD = uuid()
-    console.log(iD)
     
     let width = props.stl.width
     let parsedW = parseInt(width)
@@ -15,13 +16,12 @@ function Row(props){
       }
 
      let article = numbers.map(()=>{
-        return  <article className="Row"><Pixel color = {props.color} key = { iD }/></article>
-
+        return  <article className="Row"><Pixel colors = { selected } key = { iD }/></article>
      })
-     
+   
     return(
         <article className="Row__article">
-           {article}
+           { article }
         </article>
     )
 }

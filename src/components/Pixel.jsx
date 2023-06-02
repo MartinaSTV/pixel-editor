@@ -1,30 +1,26 @@
 import './Pixel.scss'
 import { useState } from 'react'
-function Pixel({color}){
+function Pixel(props){
 
-    let colors = color.hex
-
-    const[pixelcolor, setPixelColor] = useState('#000')
-    const [nextColor, setnextColor] = useState(pixelcolor)
-    const [changeColors, setchangeColors] = useState(true)
-
+    let  s = props.colors.hex 
+   
+    const [pixelColor, setPixelColor] = useState()
+   
+ 
     function changeColor(){
-       setPixelColor(colors)
-       setchangeColors(false)
+      setPixelColor(s)   
     }
-     function changecolorHover(){
-        setnextColor(pixelcolor)
-        setPixelColor(colors)
+
+    function changecolorHover(){
+    
     }
+
     function reset(){
-        if (changeColors){
-            setPixelColor(nextColor)
-        }
-        setchangeColors(true)
+     
     }
 
     return(
-        <article className = "Pixel" onClick={ changeColor } onMouseEnter={ changecolorHover} onMouseLeave={reset} style = { {background: pixelcolor}} ></article>
+        <article className = "Pixel" onClick={ changeColor } onMouseEnter={ changecolorHover} onMouseLeave={reset} style = { {background: pixelColor }} ></article>
     )
 }
 export default Pixel

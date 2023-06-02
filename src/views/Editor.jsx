@@ -7,10 +7,11 @@ import './Editor.scss'
 function Editor(){
 
     let data = useLocation()
-    let stl = data.state.pad
-    const [pixelColor, setPixelColor] = useState('#000000');
+    let [stl , setStl] = useState(data.state.pad)
+   /*  let stl = data.state.pad */
+    const [pixelColor, setPixelColor] = useState({hex:'22194D'});
      
-    let height = stl.height
+    let [height, setHeight] = useState(stl.height)
     let parsedH = parseInt(height)
 
     let numbersHeight = []
@@ -18,14 +19,14 @@ function Editor(){
        let j= numbersHeight.push(i)
       }
 
-    let rows = numbersHeight.map(()=>{
-        return <Row color = {pixelColor} stl = {stl}  />
+    let rows = numbersHeight.map((k, index)=>{
+        return <Row color = { pixelColor } stl = { stl } key={ index }/>
     })
 
     return(
         <section className ="Editor">
             <h1 className="Editor__title">Pixel Editor</h1>
-            <article className="Editor__picker"><TwitterPicker onChangeComplete={ setPixelColor } /> {/* selectPixelColor */}</article>
+            <article className="Editor__picker"><TwitterPicker onChangeComplete={ setPixelColor } /></article>
             <article className="Editor__row">
                 {rows}
             </article>
